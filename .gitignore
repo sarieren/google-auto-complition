@@ -1,0 +1,8 @@
+text.txt
+.idea/
+__pycache__/
+restart2.py
+data.json
+data/
+id_compilation.json
+id_restart.json

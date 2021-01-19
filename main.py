@@ -1,4 +1,5 @@
 from completion import *
+import time
 
 
 def output_(text):
@@ -16,8 +17,8 @@ def input_():
 
         res = completion(" ".join(lower_word))
 
-        output_("HERE are " + str(len(res)) + " suggestions")
-        for i in range(len(res)):
+        output_("HERE are " + str(min(len(res), 5)) + " suggestions")
+        for i in range(min(len(res), 5)):
             output_(str(i+1) + ". " + res[i].completed_sentence)
 
         if text.endswith("#"):

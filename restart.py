@@ -47,7 +47,8 @@ def add_line_to_dict(line):
     good_line = " ".join(lower_word)
 
     slice_by_char = []
-    for i in range(1, len(good_line) + 1):
+    sof = max(len(good_line) + 1, 10)
+    for i in range(1, sof):
         res = get_slice_by_char(i, good_line)
         if res:
             slice_by_char.append(get_slice_by_char(i, good_line))
@@ -138,7 +139,7 @@ def enter_data_to_json():
         json.dump(dict_data, outfile)
 
 
-create_dict( r'C:\Users\s0573\Documents\bootcamp\auto complition\data')
+create_dict( r'C:\Users\s0573\Desktop\archive')
 
 
 

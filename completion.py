@@ -36,26 +36,27 @@ def completion(sentence):
     if data.get(sentence, 0):
         values = data[sentence]
         for key, value in values.items():
-            count += 1
-            res.append(convert_to_auto_completed(sentence, key, value))
+            if count < 5:
+                count += 1
+                res.append(convert_to_auto_completed(sentence, key, value))
 
     if count < 5:
-        mashu = replace(count, sentence, data)
-        for m in mashu:
+        values = replace(count, sentence, data)
+        for value in values:
             count += 1
-            res.append(convert_to_auto_completed(m[0], m[1], m[2]))
+            res.append(convert_to_auto_completed(value[0], value[1], value[2]))
 
     if count< 5:
-        mashu = delete_(count, sentence, data)
-        for m in mashu:
+        values = delete_(count, sentence, data)
+        for value in values:
             count += 1
-            res.append(convert_to_auto_completed(m[0], m[1], m[2]))
+            res.append(convert_to_auto_completed(value[0], value[1], value[2]))
 
-    if count< 5:
-        mashu = add_(count, sentence, data)
-        for m in mashu:
+    if count < 5:
+        values = add_(count, sentence, data)
+        for value in values:
             count += 1
-            res.append(convert_to_auto_completed(m[0], m[1], m[2]))
+            res.append(convert_to_auto_completed(value[0], value[1], value[2]))
 
     return res
 

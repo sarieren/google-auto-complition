@@ -68,11 +68,11 @@ def replace(count, sentence, data):
                         values = data[temp]
                         res.extend(get_match(values, count, i, temp, 0))
 
-                elif count > 5:
+                elif count == 5:
                     break
-            if count > 5:
+            if count == 5:
                 break
-        elif count > 5:
+        elif count == 5:
             break
 
 
@@ -85,7 +85,7 @@ def replace(count, sentence, data):
                     values = data[temp]
                     res.extend(get_match(values, count, 0, temp, 0))
 
-            elif count > 5:
+            elif count == 5:
                 break
 
     return res
@@ -102,9 +102,9 @@ def delete_(count, sentence, data):
                         values = data[temp]
                         res.extend(get_match(values, count, i, temp, 1))
 
-            if count > 5:
+            if count == 5:
                 break
-        elif count > 5:
+        elif count == 5:
             break
 
     if count < 5:
@@ -122,18 +122,18 @@ def add_(count, sentence, data):
     res = []
     for i in range(len(sentence) - 1, 0, -1):
         if sentence[i] != " " and count < 5:
-            for ot in matching_letters[sentence[i]]:
-                if ot != sentence[i] and count < 5:
+            for ot in abc:
+                if count < 5:
                     temp = sentence[:i] + ot + sentence[i:]
 
                     if data.get(temp, 0):
                         values = data[temp]
                         res.extend(get_match(values, count, i, temp, 1))
-                elif count > 5:
+                else:
                     break
-            if count > 5:
+            if count == 5:
                 break
-        elif count > 5:
+        elif count == 5:
             break
 
     if count < 5:
@@ -144,5 +144,7 @@ def add_(count, sentence, data):
                 if data.get(temp, 0):
                     values = data[temp]
                     res.extend(get_match(values, count, 0, temp, 1))
+            elif count == 5:
+                break
     return res
 

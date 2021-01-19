@@ -7,16 +7,22 @@ dict_id_compilation = {}
 id_ = 1
 
 
-def create_dict(path_):
-    files = glob.glob(os.path.join(path_,  '*.txt'))
+def create_dict(startpath):
 
-    for file in files:
-        if(file.endswith(".txt")):
-            print(file)
-
-            add_query_to_dict(file)
-        else:
-            create_dict(file)
+    for root, dirs, files in os.walk(startpath):
+        level = root.replace(startpath, '').count(os.sep)
+        middle_path = os.path.basename(root)
+        all_path = startpath + '/'
+        if level == 1:
+            all_path += middle_path
+            all_path += '/'
+        if level == 2:
+            all_path += 'python-3.8.4-docs-text/'
+            all_path += middle_path
+            all_path += '/'
+        for file_path in files:
+            print(all_path + file_path)
+            add_query_to_dict(all_path + file_path)
 
     replace_key_value()
 
